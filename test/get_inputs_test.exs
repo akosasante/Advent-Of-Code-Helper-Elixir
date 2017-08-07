@@ -1,4 +1,4 @@
-defmodule GetInputTest do
+defmodule GetInputsTest do
   use ExUnit.Case
   use ExVCR.Mock
 
@@ -12,31 +12,31 @@ defmodule GetInputTest do
   end
 
   test "does it run", session do
-    {:ok, body} = GetInput.getInput(2015,1,session[:id])
+    {:ok, body} = GetInputs.get_value(2015,1,session[:id])
     assert body =~ ~r/\)\(\)\(\(\(\(\(\(\(\)\(\)\)\)\)\)\(\)\(\)\(\(\(\(\)\(/
   end
 
   test "can it make http requests", session do
     use_cassette("makerequest_valid") do
-      {:ok, values} = GetInput.makeRequest(session[:url], session[:id])
+      {:ok, values} = GetInputs.get_from_url(session[:url], session[:id])
       assert values =~ ~r/\)\(\)\(\(\(\(\(\(\(\)\(\)\)\)\)\)\(\)\(\)\(\(\(\(\)\(/
     end
   end
 
   test "invalid session should fail", session do 
     use_cassette("makerequest_invalid_session") do 
-      assert {:fail, _values} = GetInput.makeRequest(session[:url], "veryinvalid")
+      assert {:fail, _values} = GetInputs.get_from_url(session[:url], "veryinvalid")
     end
   end
 
   test "invalid url should fail" do 
     use_cassette("makerequest_invalid_url") do
-      assert {:fail, _values} = GetInput.makeRequest("http://adventofcode.com/2015/day/1/inasput","i dont matter")
+      assert {:fail, _values} = GetInputs.get_from_url("http://adventofcode.com/2015/day/1/inasput","i dont matter")
     end
   end
 
   test "generate valid url", session do
-    url = GetInput.getURL(2015,1)
+    url = GetInputs.generate_url(2015,1)
     assert url == session[:url]
   end
 end
