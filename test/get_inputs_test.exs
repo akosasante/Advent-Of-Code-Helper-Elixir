@@ -11,8 +11,9 @@ defmodule GetInputTest do
     :ok
   end
 
-  test "does it run" do
-    assert GetInput.getInput(1,'23') == :ok
+  test "does it run", session do
+    {:ok, body} = GetInput.getInput(2015,1,session[:id])
+    assert body =~ ~r/\)\(\)\(\(\(\(\(\(\(\)\(\)\)\)\)\)\(\)\(\)\(\(\(\(\)\(/
   end
 
   test "can it make http requests", session do
@@ -30,8 +31,12 @@ defmodule GetInputTest do
 
   test "invalid url should fail" do 
     use_cassette("makerequest_invalid_url") do
-      assert {:fail, _values} = GetInput.makeRequest("http://adgrentofcode.com/2015/day/1/input","i dont matter")
+      assert {:fail, _values} = GetInput.makeRequest("http://adventofcode.com/2015/day/1/inasput","i dont matter")
     end
   end
 
+  test "generate valid url", session do
+    url = GetInput.getURL(2015,1)
+    assert url == session[:url]
+  end
 end
