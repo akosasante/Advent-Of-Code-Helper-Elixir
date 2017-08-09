@@ -19,7 +19,7 @@ defmodule AdventOfCode2015.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
    [
-      {:exvcr, "~> 0.8", only: :test},{:httpotion, "~> 3.0.2"}
+      {:exvcr, "~> 0.8", only: :test},{:httpotion, "~> 3.0.2"},{:dialyxir, "~> 0.5", only: [:dev], runtime: false}
    ]
   end
 end
