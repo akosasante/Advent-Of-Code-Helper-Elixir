@@ -1,5 +1,15 @@
 defmodule GetInputs do
+  @moduledoc """
+  Contains all the logic for actually grabbing data from the website
+  """
 
+  @doc """
+  Checks to see if we already have this input, else will go and get it
+  ## Parameters
+    - Year: Int for year of puzzle
+    - Day: Int for day of puzzle
+    - Session: Session variable for authenticating against AoC
+  """
   def get_value(year, day, session) do
     case FileCache.in_cache?(year,day) do
       true -> FileCache.get_file(year,day)
@@ -7,12 +17,18 @@ defmodule GetInputs do
     end
   end
 
+  @doc """
+  Grabs puzzle input from website, saves to cache, then returns it
+  """
   defp save_and_return(year,day,session) do
     {:ok, contents} = generate_url(year,day) |> get_from_url(session)
     FileCache.save_file(year,day,contents)
     {:ok, contents}
   end
 
+  @doc """
+  Gets puzzle input from Aoc
+  """
   defp get_from_url(url, session) do
     response = HTTPotion.get(url, [headers: [cookie: "session=#{session}"]])
     case HTTPotion.Response.success?(response) do
@@ -21,6 +37,9 @@ defmodule GetInputs do
     end
   end
 
+  @doc """
+  Creates url based on year and day specified for puzzle
+  """
   defp generate_url(year,day) do
     "http://adventofcode.com/#{year}/day/#{day}/input"
   end
