@@ -18,12 +18,6 @@ defmodule FileCache do
     write_out("input_#{year}_#{day}",content)
   end
 
-  @doc """
-  Wrapper for File.write to write into cache dir
-  ## Parameters
-    - File: String name of file to be written
-    - Content: Data to be placed into file
-  """
   defp write_out(file,content) do
     Path.join(Application.get_env(:advent_of_code, :cache_dir),file)
     |> File.write(content, [])
@@ -53,9 +47,6 @@ defmodule FileCache do
     |> File.exists?
   end
 
-  @doc """
-  Generates filename from year & day of puzzle
-  """
   defp get_filename(year,day) do
     Application.get_env(:advent_of_code, :cache_dir)
     |> Path.join("input_#{year}_#{day}")
