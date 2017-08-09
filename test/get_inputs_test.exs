@@ -24,31 +24,7 @@ defmodule GetInputsTest do
     end
   end
 
-  test "can it make http requests", context do
-    use_cassette("makerequest_valid") do
-      {:ok, values} = GetInputs.get_from_url(context[:url], context[:id])
-      assert values =~ context[:content]
-    end
-  end
-
-  test "invalid context should fail", context do 
-    use_cassette("makerequest_invalid_context") do 
-      assert {:fail, _values} = GetInputs.get_from_url(context[:url], "veryinvalid")
-    end
-  end
-
-  test "invalid url should fail" do 
-    use_cassette("makerequest_invalid_url") do
-      assert {:fail, _values} = GetInputs.get_from_url("http://adventofcode.com/2015/day/1/inasput","i dont matter")
-    end
-  end
-
-  test "generate valid url", context do
-    url = GetInputs.generate_url(2015,1)
-    assert url == context[:url]
-  end
-
-  test "cache hit should bypass http", context do
+ test "cache hit should bypass http", context do
     use_cassette("makerequest_alreadycached") do
       {:ok, contents} = GetInputs.get_value(2016,2,context[:id])
       assert contents = context[:cached_content]
