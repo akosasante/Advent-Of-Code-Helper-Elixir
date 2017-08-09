@@ -1,9 +1,10 @@
 defmodule FileCache do
   def save_file(year,day,content) do
-    unless File.exists?(".cache/") do
-      File.mkdir(".cache/")
+    cache_dir = Application.get_env(:advent_of_code, :cache_dir)
+    unless File.exists?(cache_dir) do
+      File.mkdir(cache_dir)
     end
-    write_out(".cache/input_#{year}_#{day}",content)
+    write_out(Path.join(cache_dir,"input_#{year}_#{day}"),content)
   end
 
   defp write_out(file,content) do
@@ -18,7 +19,8 @@ defmodule FileCache do
   end
 
   def in_cache?(year,day) do
-    filename = ".cache/input_#{year}_#{day}"
+    filename = Application.get_env(:advent_of_code, :cache_dir)
+               |> Path.join("input_#{year}_#{day}")
     case File.exists?(filename) do
       true -> {:ok, filename}
       false -> {:fail, filename}
