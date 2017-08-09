@@ -2,13 +2,14 @@ defmodule FileCacheTest do
   use ExUnit.Case
 
   setup _context do
-    File.mkdir ".cache/"
-    File.write(".cache/input_test_day","test contents",[])
+    cache_dir = Application.get_env(:advent_of_code, :cache_dir)
+    File.mkdir cache_dir
+    File.write(Path.join(cache_dir,"input_test_day"),"test contents",[])
 
     on_exit fn ->
-      File.rm_rf ".cache"
+      File.rm_rf cache_dir
     end
-    {:ok, [dir: ".cache/", contents: "test contents"]}
+    {:ok, [dir: cache_dir, contents: "test contents"]}
 
   end
 

@@ -1,11 +1,13 @@
 defmodule GetInputsTest do
-  use ExUnit.Case, async: false
+  use ExUnit.Case, async: true
   use ExVCR.Mock
 
-  setup _context do
+  setup_all _context do
     cache_dir = Application.get_env(:advent_of_code, :cache_dir)
+
     File.mkdir(cache_dir)
     File.write(Path.join(cache_dir,"input_2016_2"), "test_post_pls_ignore", [])
+    {:ok, content} = File.read(Path.join(cache_dir,"input_2016_2"))
 
     on_exit fn ->
       File.rm_rf(cache_dir)
@@ -28,7 +30,6 @@ defmodule GetInputsTest do
 
  test "cache hit should bypass http", context do
     use_cassette("makerequest_alreadycached") do
-      IO.puts File.read(".cache/input_2016_2")
       {:ok, contents} = GetInputs.get_value(2016,2,context[:id])
       assert contents == context[:cached_content]
     end
