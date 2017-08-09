@@ -1,7 +1,12 @@
 defmodule GetInputs do
+
   def get_value(year, day, session) do
-    generate_url(year,day)
-    |> get_from_url(session)
+    if FileCache.in_cache?(year,day) do
+      FileCache.get_file(year,day)
+    end
+    {:ok, contents} = generate_url(year,day) |> get_from_url(session)
+    FileCache.save_file(year,day,contents)
+    {:ok, contents}
   end
 
   def get_from_url(url, session) do
