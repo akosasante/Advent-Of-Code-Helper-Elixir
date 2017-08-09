@@ -3,7 +3,7 @@ defmodule GetInputsTest do
   use ExVCR.Mock
 
   setup_all _context do
-    cache_dir = Application.get_env(:advent_of_code, :cache_dir)
+    cache_dir = Application.get_env(:advent_of_code, :cache_dir) |> Path.join("test")
 
     File.mkdir(cache_dir)
     File.write(Path.join(cache_dir,"input_2016_2"), "test_post_pls_ignore", [])
