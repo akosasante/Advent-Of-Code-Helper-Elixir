@@ -16,15 +16,15 @@ defmodule FileCacheTest do
   test "saves a file", context do
     FileCache.save_file(2015,1,context[:contents])
     {:ok, contents} = File.read("#{context[:dir]}/input_2015_1")
-    assert contents = context[:contents]
+    assert contents == context[:contents]
   end
 
   test "can load a file",context do
     {:ok, contents} = FileCache.get_file("test","day")
-    assert contents = context[:contents]
+    assert contents == context[:contents]
   end
 
   test "fail on non-existent file" do
-    {:fail, message} = FileCache.get_file(2016,5)
+    assert {:fail, _message} = FileCache.get_file(2016,5)
   end
 end

@@ -7,13 +7,12 @@ defmodule GetInputsTest do
 
     File.mkdir(cache_dir)
     File.write(Path.join(cache_dir,"input_2016_2"), "test_post_pls_ignore", [])
-    {:ok, content} = File.read(Path.join(cache_dir,"input_2016_2"))
 
     on_exit fn ->
       File.rm_rf(cache_dir)
     end
 
-    {:ok, [id: Application.get_env(:advent_of_code, :session), url: "http://adventofcode.com/2015/day/1/input", content_length: 7000, cached_content: "test_post_pls_ignore", cache_dir: cache_dir]}
+    {:ok, [id: Application.get_env(:advent_of_code, :session), content_length: 7000, cached_content: "test_post_pls_ignore", cache_dir: cache_dir]}
   end
 
   setup_all do
@@ -37,7 +36,7 @@ defmodule GetInputsTest do
 
   test "non-cached result should be stored after get", context do
     use_cassette("non-cached_request") do
-      {:ok, contents} = GetInputs.get_value(2015,1,context[:id])
+      {:ok, _contents} = GetInputs.get_value(2015,1,context[:id])
       assert File.exists?("#{Path.join(context[:cache_dir],"input_2015_1")}")
     end
   end

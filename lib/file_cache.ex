@@ -4,11 +4,12 @@ defmodule FileCache do
     unless cache_dir |> File.exists? do
       File.mkdir(cache_dir)
     end
-    write_out(Path.join(cache_dir,"input_#{year}_#{day}"),content)
+    write_out("input_#{year}_#{day}",content)
   end
 
   defp write_out(file,content) do
-    File.write(file,content, [])
+    Path.join(Application.get_env(:advent_of_code, :cache_dir),file)
+    |> File.write(content, [])
   end
 
   def get_file(year,day) do
