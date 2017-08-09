@@ -9,7 +9,8 @@ defmodule GetInputsTest do
     on_exit fn ->
       File.rm_rf(".cache/")
     end
-    {:ok, [id: "53616c7465645f5fb35d2e8e7973229fde2a3e9651ee924da36341f3f3c282b826575283cf90a7bf183048ec5a1a1614", url: "http://adventofcode.com/2015/day/1/input", content: ~r/\)\(\)\(\(\(\(\(\(\(\)\(\)\)\)\)\)\(\)\(\)\(\(\(\(\)\(/, cached_content: "test_post_pls_ignore"]}
+
+    {:ok, [id: Application.get_env(:advent_of_code, :session), url: "http://adventofcode.com/2015/day/1/input", content_length: 7000, cached_content: "test_post_pls_ignore"]}
   end
 
   setup_all do
@@ -20,14 +21,14 @@ defmodule GetInputsTest do
   test "does it run", context do
     use_cassette("whole_chain") do
       {:ok, body} = GetInputs.get_value(2015,1,context[:id])
-      assert body =~ context[:content]
+      assert body.length == context[:content_length]
     end
   end
 
  test "cache hit should bypass http", context do
     use_cassette("makerequest_alreadycached") do
       {:ok, contents} = GetInputs.get_value(2016,2,context[:id])
-      assert contents = context[:cached_content]
+      assert contents == context[:cached_content]
     end
   end
 
