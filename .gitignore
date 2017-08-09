@@ -21,3 +21,7 @@ erl_crash.dump
 
 #ignore exvcr fixtures
 /fixture/
+
+#ignore working config
+
+config/config.exs

@@ -1,15 +1,18 @@
 defmodule GetInputsTest do
-  use ExUnit.Case, async: false
+  use ExUnit.Case, async: true
   use ExVCR.Mock
 
-  setup _context do
-    File.mkdir(".cache")
-    File.write(".cache/input_2016_2", "test_post_pls_ignore", [])
+  setup_all _context do
+    cache_dir = Application.get_env(:advent_of_code, :cache_dir)
+
+    File.mkdir(cache_dir)
+    File.write(Path.join(cache_dir,"input_2016_2"), "test_post_pls_ignore", [])
 
     on_exit fn ->
-      File.rm_rf(".cache/")
+      File.rm_rf(cache_dir)
     end
-    {:ok, [id: "53616c7465645f5fb35d2e8e7973229fde2a3e9651ee924da36341f3f3c282b826575283cf90a7bf183048ec5a1a1614", url: "http://adventofcode.com/2015/day/1/input", content: ~r/\)\(\)\(\(\(\(\(\(\(\)\(\)\)\)\)\)\(\)\(\)\(\(\(\(\)\(/, cached_content: "test_post_pls_ignore"]}
+
+    {:ok, [id: Application.get_env(:advent_of_code, :session), content_length: 7000, cached_content: "test_post_pls_ignore", cache_dir: cache_dir]}
   end
 
   setup_all do
@@ -20,21 +23,21 @@ defmodule GetInputsTest do
   test "does it run", context do
     use_cassette("whole_chain") do
       {:ok, body} = GetInputs.get_value(2015,1,context[:id])
-      assert body =~ context[:content]
+      assert String.length(body) == context[:content_length]
     end
   end
 
  test "cache hit should bypass http", context do
     use_cassette("makerequest_alreadycached") do
       {:ok, contents} = GetInputs.get_value(2016,2,context[:id])
-      assert contents = context[:cached_content]
+      assert contents == context[:cached_content]
     end
   end
 
   test "non-cached result should be stored after get", context do
     use_cassette("non-cached_request") do
-      {:ok, contents} = GetInputs.get_value(2015,1,context[:id])
-      assert File.exists?(".cache/input_2015_1")
+      {:ok, _contents} = GetInputs.get_value(2015,1,context[:id])
+      assert File.exists?("#{Path.join(context[:cache_dir],"input_2015_1")}")
     end
   end
 end
