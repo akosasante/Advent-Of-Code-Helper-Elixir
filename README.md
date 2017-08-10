@@ -1,4 +1,4 @@
-# Advent of Code Elixir
+# Advent of Code Elixir [![Build Status](https://travis-ci.org/ejhobbs/Advent-Of-Code.svg?branch=master)](https://travis-ci.org/ejhobbs/Advent-Of-Code)[![codecov](https://codecov.io/gh/ejhobbs/Advent-Of-Code/branch/master/graph/badge.svg)](https://codecov.io/gh/ejhobbs/Advent-Of-Code)
 
 This elixir package allows you to quickly grab inputs for advent of code puzzles, and not have to worry about manually pasting them in!
 
