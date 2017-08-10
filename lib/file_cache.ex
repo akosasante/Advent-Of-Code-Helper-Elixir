@@ -11,7 +11,7 @@ defmodule FileCache do
     - Content: Puzzle input
   """
   def save_file(year,day,content) do
-    cache_dir = Application.get_env(:advent_of_code, :cache_dir)
+    cache_dir = Application.get_env(:advent_of_code_helper, :cache_dir)
     unless cache_dir |> File.exists? do
       File.mkdir(cache_dir)
     end
@@ -20,7 +20,7 @@ defmodule FileCache do
   end
 
   defp write_out(file,content) do
-    Path.join(Application.get_env(:advent_of_code, :cache_dir),file)
+    Path.join(Application.get_env(:advent_of_code_helper, :cache_dir),file)
     |> File.write(content, [])
   end
 
@@ -49,7 +49,7 @@ defmodule FileCache do
   end
 
   defp get_filename(year,day) do
-    Application.get_env(:advent_of_code, :cache_dir)
+    Application.get_env(:advent_of_code_helper, :cache_dir)
     |> Path.join("input_#{year}_#{day}")
   end
 end
