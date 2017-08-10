@@ -22,7 +22,7 @@ session: "<session string>",
 cache_dir: ".cache/" # this is a sensible default, but feel free to put it wherever you have write access
 ```
 
-The session string will need to be taken from ![adventofcode.com](https://adventofcode.com), it will be under cookies as `session`. You can extract the value using the inspector in your browser of choice.
+The session string will need to be taken from [adventofcode.com](https://adventofcode.com), it will be under cookies as `session`. You can extract the value using the inspector in your browser of choice.
 
 
 ## Installation
