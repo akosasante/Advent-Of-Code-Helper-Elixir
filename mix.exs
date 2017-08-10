@@ -1,4 +1,4 @@
-defmodule AdventOfCode2015.Mixfile do
+defmodule AdventOfCode.Mixfile do
   use Mix.Project
 
   def project do
@@ -28,4 +28,22 @@ test_coverage: [tool: ExCoveralls],
       {:exvcr, "~> 0.8", only: :test},{:httpotion, "~> 3.0.2"},{:dialyxir, "~> 0.5", only: [:dev], runtime: false},{:excoveralls, "~> 0.7.2", only: :test}
    ]
   end
+
+  defp description do
+    """
+    Package to allow you to get input for all advent of code puzzles, rather than
+    pasting them in manually.
+    """
+  end
+
+  defp package do
+    [
+      name: :advent_of_code,
+      files: ["lib","mix.exs","config/config.exs.sample","README*","LICENSE"],
+      maintainers: ["Edward Hobbs"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/ejhobbs/Advent-Of-Code"}
+    ]
+  end
+
 end

@@ -17,6 +17,7 @@ defmodule GetInputsTest do
 
   setup_all do
     ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes")
+    ExVCR.Config.filter_request_headers("session")
     :ok
   end
 
