@@ -1,4 +1,4 @@
-defmodule AdventOfCode2015.Mixfile do
+defmodule AdventOfCode.Mixfile do
   use Mix.Project
 
   def project do
