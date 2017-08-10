@@ -36,4 +36,14 @@ test_coverage: [tool: ExCoveralls],
     """
   end
 
+  defp package do
+    [
+      name: :advent_of_code,
+      files: ["lib","mix.exs","config/config.exs.sample","README*","LICENSE"],
+      maintainers: ["Edward Hobbs"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/ejhobbs/Advent-Of-Code"}
+    ]
+  end
+
 end
