@@ -16,6 +16,7 @@ defmodule FileCache do
       File.mkdir(cache_dir)
     end
     write_out("input_#{year}_#{day}",content)
+    :ok
   end
 
   defp write_out(file,content) do
@@ -30,10 +31,7 @@ defmodule FileCache do
     - Day: day of puzzle
   """
   def get_file(year,day) do
-    case in_cache?(year,day) do
-      true -> get_filename(year,day) |> File.read()
-      false -> {:fail, "File not found for #{get_filename(year,day)}"}
-    end
+    get_filename(year,day) |> File.read()
   end
 
   @doc """

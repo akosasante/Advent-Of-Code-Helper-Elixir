@@ -27,4 +27,9 @@ defmodule FileCacheTest do
   test "fail on non-existent file" do
     assert {:fail, _message} = FileCache.get_file(2016,5)
   end
+
+  test "should create cache dir if not already present", context do
+    FileCache.save_file("dont","care","content")
+    assert File.exists?(context[:dir])
+  end
 end
