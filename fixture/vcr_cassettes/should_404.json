@@ -13,12 +13,12 @@
     "response": {
       "body": "404 Not Found\n",
       "headers": {
-        "Date": "Thu, 10 Aug 2017 20:37:36 GMT",
+        "Date": "Thu, 10 Aug 2017 21:19:22 GMT",
         "Content-Type": "text/plain",
         "Transfer-Encoding": "chunked",
         "Connection": "keep-alive",
         "Server": "Apache",
-        "Server-Ip": "172.31.59.243",
+        "Server-Ip": "172.31.56.123",
         "Vary": "X-Forwarded-Proto"
       },
       "status_code": 404,
