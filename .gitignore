@@ -24,4 +24,3 @@ erl_crash.dump
 
 #ignore working config
 
-config/config.exs

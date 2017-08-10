@@ -3,7 +3,7 @@ defmodule GetInputsTest do
   use ExVCR.Mock
 
   setup_all _context do
-    cache_dir = Application.get_env(:advent_of_code, :cache_dir) |> Path.join("test")
+    cache_dir = Application.get_env(:advent_of_code, :cache_dir)
 
     File.mkdir(cache_dir)
     File.write(Path.join(cache_dir,"input_2016_2"), "test_post_pls_ignore", [])
@@ -38,6 +38,13 @@ defmodule GetInputsTest do
     use_cassette("non-cached_request") do
       {:ok, _contents} = GetInputs.get_value(2015,1,context[:id])
       assert File.exists?("#{Path.join(context[:cache_dir],"input_2015_1")}")
+    end
+  end
+
+  test "incorrect day should return error", context do
+    use_cassette("should_404") do
+      {:fail, msg} = GetInputs.get_value(2012,5,context[:id])
+      assert msg == "404 Not Found\n"
     end
   end
 end

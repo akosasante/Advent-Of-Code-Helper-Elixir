@@ -1,8 +1,8 @@
 defmodule FileCacheTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
 
   setup _context do
-    cache_dir = Application.get_env(:advent_of_code, :cache_dir) |> Path.join("test")
+    cache_dir = Application.get_env(:advent_of_code, :cache_dir)
     File.mkdir cache_dir
     File.write(Path.join(cache_dir,"input_test_day"),"test contents",[])
 
@@ -26,5 +26,10 @@ defmodule FileCacheTest do
 
   test "fail on non-existent file" do
     assert {:fail, _message} = FileCache.get_file(2016,5)
+  end
+
+  test "should create cache dir if not already present", context do
+    FileCache.save_file("dont","care","content")
+    assert File.exists?(context[:dir])
   end
 end

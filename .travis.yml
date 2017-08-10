@@ -1,6 +1,8 @@
 language: elixir
+sudo: false
+dist: trusty
 elixir:
-  - 1.4.0
+  - 1.5.0
 
 script:
   - MIX_ENV=test mix do compile --warnings-as-errors, coveralls.json
