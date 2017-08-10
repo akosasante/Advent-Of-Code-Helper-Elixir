@@ -9,7 +9,7 @@ defmodule AdventOfCodeTest do
 
 
   test "do we get the correct value" do
-    use_cassette("whole_chain") do
+    use_cassette("everything_should_work") do
       {:ok, contents} = AdventOfCode.get_input(2015,1)
       assert String.length(contents) == 7000
     end
