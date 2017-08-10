@@ -8,6 +8,8 @@ defmodule AdventOfCode.Mixfile do
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
       deps: deps(),
+      description: description(),
+      package: package(),
       preferred_cli_env: [
         "coveralls": :test,
         "coveralls.html": :test,
