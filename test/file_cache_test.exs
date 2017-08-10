@@ -1,5 +1,5 @@
 defmodule FileCacheTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
 
   setup _context do
     cache_dir = Application.get_env(:advent_of_code, :cache_dir)

@@ -31,7 +31,10 @@ defmodule FileCache do
     - Day: day of puzzle
   """
   def get_file(year,day) do
-    get_filename(year,day) |> File.read()
+    case get_filename(year,day) |> File.read() do
+      {:ok, contents} -> {:ok, contents}
+      {:error, _msg} -> {:fail, "No file found"}
+    end
   end
 
   @doc """
