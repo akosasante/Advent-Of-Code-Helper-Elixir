@@ -40,4 +40,11 @@ defmodule GetInputsTest do
       assert File.exists?("#{Path.join(context[:cache_dir],"input_2015_1")}")
     end
   end
+
+  test "incorrect day should return error", context do
+    use_cassette("should_404") do
+      {:fail, msg} = GetInputs.get_value(2012,5,context[:id])
+      assert msg == "404 Not Found\n"
+    end
+  end
 end
