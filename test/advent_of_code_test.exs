@@ -1,4 +1,4 @@
-defmodule AdventOfCodeTest do
+defmodule AdventOfCodeHelperTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock
 
@@ -10,14 +10,14 @@ defmodule AdventOfCodeTest do
 
   test "do we get the correct value" do
     use_cassette("everything_should_work") do
-      {:ok, contents} = AdventOfCode.get_input(2015,1)
+      {:ok, contents} = AdventOfCodeHelper.get_input(2015,1)
       assert String.length(contents) == 7000
     end
   end
 
   test "gets current year correctly" do
     use_cassette("most_recent_year") do
-      {:ok, _contents} = AdventOfCode.get_input(1)
+      {:ok, _contents} = AdventOfCodeHelper.get_input(1)
       assert File.exists?(".cache/input_#{calculate_year()}_1")
     end
   end

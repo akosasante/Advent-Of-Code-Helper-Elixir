@@ -3,7 +3,7 @@ defmodule GetInputsTest do
   use ExVCR.Mock
 
   setup_all _context do
-    cache_dir = Application.get_env(:advent_of_code, :cache_dir)
+    cache_dir = Application.get_env(:advent_of_code_helper, :cache_dir)
 
     File.mkdir(cache_dir)
     File.write(Path.join(cache_dir,"input_2016_2"), "test_post_pls_ignore", [])
@@ -12,7 +12,7 @@ defmodule GetInputsTest do
       File.rm_rf(cache_dir)
     end
 
-    {:ok, [id: Application.get_env(:advent_of_code, :session), content_length: 7000, cached_content: "test_post_pls_ignore", cache_dir: cache_dir]}
+    {:ok, [id: Application.get_env(:advent_of_code_helper, :session), content_length: 7000, cached_content: "test_post_pls_ignore", cache_dir: cache_dir]}
   end
 
   setup_all do

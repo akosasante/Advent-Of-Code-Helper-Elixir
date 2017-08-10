@@ -1,4 +1,4 @@
-defmodule AdventOfCode do
+defmodule AdventOfCodeHelper do
   @moduledoc """
   Provides an interface to get input values for Advent of Code puzzles
   """
