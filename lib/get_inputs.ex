@@ -18,9 +18,11 @@ defmodule GetInputs do
   end
 
   defp save_and_return(year,day,session) do
-    {:ok, contents} = generate_url(year,day) |> get_from_url(session)
-    FileCache.save_file(year,day,contents)
-    {:ok, contents}
+    case generate_url(year,day) |> get_from_url(session) do
+      {:ok, contents} -> FileCache.save_file(year,day,contents)
+                         {:ok, contents}
+      {:fail, message} -> {:fail, message}
+    end
   end
 
   defp get_from_url(url, session) do
