@@ -15,13 +15,20 @@ defmodule AdventOfCode do
   end
 
   @doc """
-  Return input values for current year
+  Return input values for most recent year
 
   ## Parameters
     - day: Int that represents day of puzzle
   """
   def get_input(day) do
-    today = Date.utc_today()
-    get_input(today.year, day)
+    calculate_year() |> get_input(day)
+  end
+
+  defp calculate_year do
+    today = Date.utc_today
+    case today.month < 12 do
+      true -> today.year-1
+      false -> today.year
+    end
   end
 end
