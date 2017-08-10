@@ -28,4 +28,12 @@ test_coverage: [tool: ExCoveralls],
       {:exvcr, "~> 0.8", only: :test},{:httpotion, "~> 3.0.2"},{:dialyxir, "~> 0.5", only: [:dev], runtime: false},{:excoveralls, "~> 0.7.2", only: :test}
    ]
   end
+
+  defp description do
+    """
+    Package to allow you to get input for all advent of code puzzles, rather than
+    pasting them in manually.
+    """
+  end
+
 end
