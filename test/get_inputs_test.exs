@@ -1,4 +1,5 @@
-defmodule GetInputsTest do
+defmodule AdventOfCodeHelper.GetInputsTest do
+  alias AdventOfCodeHelper.GetInputs
   use ExUnit.Case, async: true
   use ExVCR.Mock
 

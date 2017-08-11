@@ -1,4 +1,5 @@
 defmodule AdventOfCodeHelper do
+  alias AdventOfCodeHelper.GetInputs
   @moduledoc """
   Provides an interface to get input values for Advent of Code puzzles
   """

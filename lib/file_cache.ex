@@ -1,4 +1,4 @@
-defmodule FileCache do
+defmodule AdventOfCodeHelper.FileCache do
   @moduledoc """
   Contains all the logic for reading/writing files on disk
   """

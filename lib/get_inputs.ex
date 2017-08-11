@@ -1,4 +1,5 @@
-defmodule GetInputs do
+defmodule AdventOfCodeHelper.GetInputs do
+  alias AdventOfCodeHelper.FileCache
   @moduledoc """
   Contains all the logic for actually grabbing data from the website
   """
