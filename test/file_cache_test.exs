@@ -2,7 +2,7 @@ defmodule FileCacheTest do
   use ExUnit.Case, async: false
 
   setup _context do
-    cache_dir = Application.get_env(:advent_of_code, :cache_dir)
+    cache_dir = Application.get_env(:advent_of_code_helper, :cache_dir)
     File.mkdir cache_dir
     File.write(Path.join(cache_dir,"input_test_day"),"test contents",[])
 

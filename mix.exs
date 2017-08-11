@@ -3,7 +3,7 @@ defmodule AdventOfCode.Mixfile do
 
   def project do
     [
-      app: :advent_of_code,
+      app: :advent_of_code_helper,
       version: "0.1.0",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
@@ -40,7 +40,7 @@ test_coverage: [tool: ExCoveralls],
 
   defp package do
     [
-      name: :advent_of_code,
+      name: :advent_of_code_helper,
       files: ["lib","mix.exs","config/config.exs.sample","README*","LICENSE"],
       maintainers: ["Edward Hobbs"],
       licenses: ["MIT"],
