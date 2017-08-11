@@ -4,7 +4,7 @@ defmodule AdventOfCodeHelperTest do
   import Mock
 
   setup_all do
-    ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes")
+    ExVCR.Config.cassette_library_dir("test/fixture/vcr_cassettes")
     :ok
   end
 
