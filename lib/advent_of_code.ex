@@ -1,4 +1,4 @@
-defmodule AdventOfCode do
+defmodule AdventOfCodeHelper do
   @moduledoc """
   Provides an interface to get input values for Advent of Code puzzles
   """
@@ -11,7 +11,7 @@ defmodule AdventOfCode do
     - day: Int that represents day of puzzle
   """
   def get_input(year,day) do
-    GetInputs.get_value(year,day,Application.get_env(:advent_of_code, :session))
+    GetInputs.get_value(year,day,Application.get_env(:advent_of_code_helper, :session))
   end
 
   @doc """
