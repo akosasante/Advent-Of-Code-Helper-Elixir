@@ -17,7 +17,7 @@ defmodule AdventOfCodeHelper.GetInputsTest do
   end
 
   setup_all do
-    ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes")
+    ExVCR.Config.cassette_library_dir("test/fixture/vcr_cassettes")
     ExVCR.Config.filter_request_headers("session")
     :ok
   end
