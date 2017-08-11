@@ -1,6 +1,6 @@
 # Advent of Code Helper [![Build Status](https://travis-ci.org/ejhobbs/Advent-Of-Code.svg?branch=master)](https://travis-ci.org/ejhobbs/Advent-Of-Code) [![codecov](https://codecov.io/gh/ejhobbs/Advent-Of-Code/branch/master/graph/badge.svg)](https://codecov.io/gh/ejhobbs/Advent-Of-Code) [![Hex.pm](https://img.shields.io/hexpm/v/advent_of_code_helper.svg?style=plastic)](https://hex.pm/packages/advent_of_code_helper)
 
-This elixir package allows you to quickly grab inputs for advent of code puzzles, and not have to worry about manually pasting them in!
+This elixir package allows you to quickly grab inputs for advent of code puzzles, and not have to worry about manually pasting them in! After you've got a puzzle input for the first time, the result is stored on disk so every subsequent request bypasses the need to download it from the server again.
 
 ## Usage
 
