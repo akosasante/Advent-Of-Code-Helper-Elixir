@@ -1,6 +1,7 @@
 defmodule AdventOfCodeHelperTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock
+  import Mock
 
   setup_all do
     ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes")
@@ -19,6 +20,15 @@ defmodule AdventOfCodeHelperTest do
     use_cassette("most_recent_year") do
       {:ok, _contents} = AdventOfCodeHelper.get_input(1)
       assert File.exists?(".cache/input_#{calculate_year()}_1")
+    end
+  end
+
+  test "gets current year correctly in december" do
+    use_cassette("2016_day_2") do
+      with_mock Date, [utc_today: fn() -> ~D[2016-12-02] end] do
+        {:ok, _contents} = AdventOfCodeHelper.get_input(2)
+        assert File.exists?(".cache/input_#{calculate_year()}_1")
+      end
     end
   end
 

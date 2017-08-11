@@ -27,7 +27,7 @@ test_coverage: [tool: ExCoveralls],
   # Run "mix help deps" to learn about dependencies.
   defp deps do
    [
-      {:exvcr, "~> 0.8", only: :test},{:httpotion, "~> 3.0.2"},{:dialyxir, "~> 0.5", only: [:dev], runtime: false},{:excoveralls, "~> 0.7.2", only: :test},{:ex_doc, ">=0.0.0", only: :dev}
+      {:exvcr, "~> 0.8", only: :test},{:httpotion, "~> 3.0.2"},{:dialyxir, "~> 0.5", only: [:dev], runtime: false},{:excoveralls, "~> 0.7.2", only: :test},{:ex_doc, ">=0.0.0", only: :dev},{:mock, "~> 0.2.0", only: :test}
    ]
   end
 
