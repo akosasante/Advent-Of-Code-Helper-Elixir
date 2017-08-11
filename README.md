@@ -17,7 +17,7 @@ Both of these functions will simply return a tuple `{:ok, value}` if they succee
 There are two configuration directives that are also needed to make this package work correctly. Simply add the following to your `config/config.exs`
 
 ```elixir
-config: :advent_of_code_helper,
+config :advent_of_code_helper,
 session: "<session string>",
 cache_dir: ".cache/" # this is a sensible default, but feel free to put it wherever you have write access
 ```
