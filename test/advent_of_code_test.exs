@@ -1,6 +1,7 @@
 defmodule AdventOfCodeHelperTest do
   use ExUnit.Case, async: false
   use ExVCR.Mock
+  use Mock
 
   setup_all do
     ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes")
