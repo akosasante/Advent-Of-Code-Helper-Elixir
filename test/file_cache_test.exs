@@ -1,4 +1,5 @@
-defmodule FileCacheTest do
+defmodule AdventOfCodeHelper.FileCacheTest do
+  alias AdventOfCodeHelper.FileCache
   use ExUnit.Case, async: false
 
   setup _context do
