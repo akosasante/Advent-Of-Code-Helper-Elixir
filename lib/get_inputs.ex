@@ -11,26 +11,26 @@ defmodule AdventOfCodeHelper.GetInputs do
     - Day: Int for day of puzzle
     - Session: Session variable for authenticating against AoC
   """
-  def get_value(year, day, session) do
+  def get_value(year, day, session, http_mod \\ Tesla) do
     case FileCache.in_cache?(year,day) do
       true -> FileCache.get_file(year,day)
       false -> save_and_return(year,day,session)
     end
   end
 
-  defp save_and_return(year,day,session) do
-    case generate_url(year,day) |> get_from_url(session) do
+  defp save_and_return(year,day,session, http_mod) do
+    case generate_url(year,day) |> get_from_url(session, http_mod) do
       {:ok, contents} -> FileCache.save_file(year,day,contents)
                          {:ok, contents}
       {:fail, message} -> {:fail, message}
     end
   end
 
-  defp get_from_url(url, session) do
-    response = HTTPotion.get(url, [headers: [cookie: "session=#{session}"]])
-    case HTTPotion.Response.success?(response) do
-      true -> {:ok, response.body}
-      false -> {:fail, response.body}
+  defp get_from_url(url, session, http_mod) do
+    response = http_mod.get(url, [headers: %{"cookie" => "session=#{session}"}])
+    case response.status do
+      200 -> {:ok, response.body}
+      _ -> {:fail, response.body}
     end
   end
 
