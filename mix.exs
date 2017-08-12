@@ -21,7 +21,7 @@ test_coverage: [tool: ExCoveralls],
 
   # Run "mix help compile.app" to learn about applications.
   def application do
-    [ applications: [:httpotion] ]
+    []
   end
 
   # Run "mix help deps" to learn about dependencies.
