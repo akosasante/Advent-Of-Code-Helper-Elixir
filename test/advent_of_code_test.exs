@@ -8,7 +8,7 @@ defmodule AdventOfCodeHelperTest do
            |> allow(:get_value, fn(_y,_d,session,_hm) -> {:ok, session} end)
     {:ok, contents} = AdventOfCodeHelper.get_input(2015,1,stub)
     assert contents == Application.get_env(:advent_of_code, :session)
-    assert_receive(:example, 2015)
+    assert_receive({:get_value, 2015, 1, nil})
   end
 
 end
