@@ -10,18 +10,17 @@ defmodule AdventOfCodeHelper.FileCache do
     - Day: Int day of puzzle
     - Content: Puzzle input
   """
-  def save_file(year,day,content) do
+  def save_file(year,day,content, file_mod \\ File) do
     cache_dir = Application.get_env(:advent_of_code_helper, :cache_dir)
-    unless cache_dir |> File.exists? do
-      File.mkdir(cache_dir)
+    unless cache_dir |> file_mod.exists? do
+      file_mod.mkdir(cache_dir)
     end
-    write_out("input_#{year}_#{day}",content)
-    :ok
+    write_out("input_#{year}_#{day}",content, file_mod)
   end
 
-  defp write_out(file,content) do
+  defp write_out(file,content, file_mod) do
     Path.join(Application.get_env(:advent_of_code_helper, :cache_dir),file)
-    |> File.write(content, [])
+    |> file_mod.write(content, [])
   end
 
   @doc """
@@ -30,8 +29,8 @@ defmodule AdventOfCodeHelper.FileCache do
     - Year: year of puzzle
     - Day: day of puzzle
   """
-  def get_file(year,day) do
-    case get_filename(year,day) |> File.read() do
+  def get_file(year,day, file_mod \\ File) do
+    case get_filename(year,day) |> file_mod.read() do
       {:ok, contents} -> {:ok, contents}
       {:error, _msg} -> {:fail, "No file found"}
     end
@@ -43,7 +42,7 @@ defmodule AdventOfCodeHelper.FileCache do
     - year: year of puzzle
     - day: day of puzzle
   """
-  def in_cache?(year,day) do
+  def in_cache?(year,day, file_mod \\ File) do
     get_filename(year,day)
     |> File.exists?
   end
