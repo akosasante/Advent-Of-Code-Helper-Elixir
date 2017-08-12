@@ -12,7 +12,7 @@ defmodule AdventOfCodeHelper do
     - day: Int that represents day of puzzle
   """
   def get_input(year,day, get_mod \\ GetInputs) do
-    get_mod.get_value(year,day,Application.get_env(:advent_of_code_helper, :session))
+    get_mod.get_value(year,day,Application.get_env(:advent_of_code_helper, :session), Tesla)
   end
 
 end
