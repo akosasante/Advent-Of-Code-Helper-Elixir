@@ -14,7 +14,7 @@ defmodule AdventOfCodeHelper.GetInputs do
   def get_value(year, day, session, http_mod \\ Tesla) do
     case FileCache.in_cache?(year,day) do
       true -> FileCache.get_file(year,day)
-      false -> save_and_return(year,day,session)
+      false -> save_and_return(year,day,session, http_mod)
     end
   end
 
