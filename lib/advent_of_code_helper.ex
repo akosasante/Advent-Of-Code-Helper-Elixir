@@ -21,12 +21,12 @@ defmodule AdventOfCodeHelper do
   ## Parameters
     - day: Int that represents day of puzzle
   """
-  def get_input(day) do
-    calculate_year() |> get_input(day)
+  def get_input(day, date_mod \\ Date) do
+    calculate_year(date_mod) |> get_input(day)
   end
 
-  defp calculate_year do
-    today = Date.utc_today
+  defp calculate_year(date_mod) do
+    today = date_mod.utc_today
     case today.month < 12 do
       true -> today.year-1
       false -> today.year
