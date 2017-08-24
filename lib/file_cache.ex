@@ -15,7 +15,11 @@ defmodule AdventOfCodeHelper.FileCache do
     unless cache_dir |> file_mod.exists? do
       file_mod.mkdir(cache_dir)
     end
-    write_out("input_#{year}_#{day}",content, file_mod)
+
+    case write_out("input_#{year}_#{day}",content, file_mod) do
+      :ok -> {:ok, content}
+      {:error, reason} -> {:error, reason}
+    end
   end
 
   defp write_out(file,content, file_mod) do

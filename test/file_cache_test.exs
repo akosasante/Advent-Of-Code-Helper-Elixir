@@ -1,23 +1,17 @@
 defmodule AdventOfCodeHelper.FileCacheTest do
   alias AdventOfCodeHelper.FileCache
-  use ExUnit.Case, async: false
-
-  setup _context do
-    cache_dir = Application.get_env(:advent_of_code_helper, :cache_dir)
-    File.mkdir cache_dir
-    File.write(Path.join(cache_dir,"input_test_day"),"test contents",[])
-
-    on_exit fn ->
-      File.rm_rf cache_dir
-    end
-    {:ok, [dir: cache_dir, contents: "test contents"]}
-
-  end
+  use ExUnit.Case
+  import Double
 
   test "saves a file", context do
-    FileCache.save_file(2015,1,context[:contents])
-    {:ok, contents} = File.read("#{context[:dir]}/input_2015_1")
-    assert contents == context[:contents]
+    stub = File
+           |> double
+           |> allow(:exists?, fn(_file) -> true end)
+           |> allow(:write, fn(filename,content,_opts) -> :ok end)
+    {:ok, contents} = FileCache.save_file(2015,1,"test contents", stub)
+    assert contents == "test contents"
+    assert_received({:exists?, ".cache/"})
+    assert_received({:write, ".cache/input_2015_1", "test_contents", []})
   end
 
   test "can load a file",context do
