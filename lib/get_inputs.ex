@@ -35,6 +35,6 @@ defmodule AdventOfCodeHelper.GetInputs do
   end
 
   defp generate_url(year,day) do
-    "http://adventofcode.com/#{year}/day/#{day}/input"
+    "https://adventofcode.com/#{year}/day/#{day}/input"
   end
 end

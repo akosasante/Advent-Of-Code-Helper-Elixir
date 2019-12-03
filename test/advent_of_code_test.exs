@@ -18,8 +18,10 @@ defmodule AdventOfCodeHelperTest do
 
   test "gets current year correctly" do
     use_cassette("most_recent_year") do
-      {:ok, _contents} = AdventOfCodeHelper.get_input(1)
-      assert File.exists?(".cache/input_#{calculate_year()}_1")
+      with_mock Date, [utc_today: fn() -> ~D[2016-12-02] end] do
+        {:ok, _contents} = AdventOfCodeHelper.get_input(1)
+        assert File.exists?(".cache/input_#{calculate_year()}_1")
+      end
     end
   end
 
