@@ -11,18 +11,16 @@ defmodule AdventOfCodeHelper.Mixfile do
       description: description(),
       package: package(),
       preferred_cli_env: [
-        "coveralls": :test,
+        vcr: :test,
+        coveralls: :test,
         "coveralls.html": :test,
         "coveralls.json": :test,
       ],
-test_coverage: [tool: ExCoveralls],
+      test_coverage: [tool: ExCoveralls],
     ]
   end
 
   # Run "mix help compile.app" to learn about applications.
-  def application do
-    [ applications: [:httpotion] ]
-  end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
