@@ -8,7 +8,7 @@
       "method": "get",
       "options": [],
       "request_body": "",
-      "url": "http://adventofcode.com/2012/day/5/input"
+      "url": "https://adventofcode.com/2012/day/5/input"
     },
     "response": {
       "body": "404 Not Found\n",
