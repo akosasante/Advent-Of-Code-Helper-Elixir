@@ -25,11 +25,13 @@ defmodule AdventOfCodeHelper do
     calculate_year() |> get_input(day)
   end
 
-  defp calculate_year do
-    today = Date.utc_today
+  defp calculate_year() do
+    today = date_mod().utc_today()
     case today.month < 12 do
       true -> today.year-1
       false -> today.year
     end
   end
+
+  defp date_mod(), do: Application.get_env(:advent_of_code_helper, :date_module)
 end

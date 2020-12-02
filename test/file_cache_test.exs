@@ -11,7 +11,6 @@ defmodule AdventOfCodeHelper.FileCacheTest do
       File.rm_rf cache_dir
     end
     {:ok, [dir: cache_dir, contents: "test contents"]}
-
   end
 
   test "saves a file", context do
@@ -30,6 +29,8 @@ defmodule AdventOfCodeHelper.FileCacheTest do
   end
 
   test "should create cache dir if not already present", context do
+    File.rm_rf context[:dir]
+    refute File.exists?(context[:dir])
     FileCache.save_file("dont","care","content")
     assert File.exists?(context[:dir])
   end

@@ -4,30 +4,32 @@ defmodule AdventOfCodeHelper.Mixfile do
   def project do
     [
       app: :advent_of_code_helper,
-      version: "0.1.2",
-      elixir: "~> 1.5",
+      version: "0.2.0",
+      elixir: "~> 1.10",
       start_permanent: Mix.env == :prod,
       deps: deps(),
       description: description(),
       package: package(),
       preferred_cli_env: [
-        "coveralls": :test,
+        vcr: :test,
+        coveralls: :test,
         "coveralls.html": :test,
         "coveralls.json": :test,
       ],
-test_coverage: [tool: ExCoveralls],
+      test_coverage: [tool: ExCoveralls],
     ]
   end
 
   # Run "mix help compile.app" to learn about applications.
-  def application do
-    [ applications: [:httpotion] ]
-  end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
    [
-      {:exvcr, "~> 0.8", only: :test},{:httpotion, "~> 3.0.2"},{:dialyxir, "~> 0.5", only: [:dev], runtime: false},{:excoveralls, "~> 0.7.2", only: :test},{:ex_doc, ">=0.0.0", only: :dev},{:mock, "~> 0.2.0", only: :test}
+     {:exvcr, "~> 0.12", only: :test},
+     {:finch, "~> 0.5"},
+     {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+     {:excoveralls, "~> 0.13", only: :test},
+     {:ex_doc, ">=0.0.0", only: :dev, runtime: false},
    ]
   end
 

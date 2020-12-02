@@ -27,14 +27,23 @@ defmodule AdventOfCodeHelper.GetInputs do
   end
 
   defp get_from_url(url, session) do
-    response = HTTPotion.get(url, [headers: [cookie: "session=#{session}"]])
-    case HTTPotion.Response.success?(response) do
-      true -> {:ok, response.body}
-      false -> {:fail, response.body}
+    Finch.start_link(name: MyFinch)
+
+    Finch.build(:get, url, generate_headers(session))
+    |> Finch.request(MyFinch)
+    |> case do
+         {:ok, %Finch.Response{body: body, status: 200}} -> {:ok, body}
+         {:ok, %Finch.Response{body: body}} -> {:fail, body}
+         {:error, %{reason: error}} -> {:fail, error}
+         error -> {:fail, "Unexpected error: #{inspect error}"}
     end
   end
 
   defp generate_url(year,day) do
     "https://adventofcode.com/#{year}/day/#{day}/input"
+  end
+
+  defp generate_headers(session) do
+    [{"cookie", "session=#{session}"}]
   end
 end
