@@ -4,7 +4,7 @@ defmodule AdventOfCodeHelper.Mixfile do
   def project do
     [
       app: :advent_of_code_helper,
-      version: "0.1.2",
+      version: "0.2.0",
       elixir: "~> 1.10",
       start_permanent: Mix.env == :prod,
       deps: deps(),
@@ -29,7 +29,7 @@ defmodule AdventOfCodeHelper.Mixfile do
      {:finch, "~> 0.5"},
      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
      {:excoveralls, "~> 0.13", only: :test},
-     {:ex_doc, ">=0.0.0", only: :dev},
+     {:ex_doc, ">=0.0.0", only: :dev, runtime: false},
    ]
   end
 
