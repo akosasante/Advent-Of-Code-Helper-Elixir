@@ -1,7 +1,17 @@
 defmodule AdventOfCodeHelperTest do
   use ExUnit.Case, async: false
-  use ExVCR.Mock
-  import Mock
+  use ExVCR.Mock, adapter: ExVCR.Adapter.Httpc
+
+  setup _context do
+    cache_dir = Application.get_env(:advent_of_code_helper, :cache_dir)
+    File.mkdir cache_dir
+    File.write(Path.join(cache_dir,"input_test_day"),"test contents",[])
+
+    on_exit fn ->
+      File.rm_rf cache_dir
+    end
+    {:ok, [dir: cache_dir, contents: "test contents"]}
+  end
 
   setup_all do
     ExVCR.Config.cassette_library_dir("test/fixture/vcr_cassettes")
@@ -16,29 +26,29 @@ defmodule AdventOfCodeHelperTest do
     end
   end
 
-  test "gets current year correctly" do
+  test "uses previous year if it's not december yet", context do
+    defmodule NonDecemberDateModule do
+      def utc_today(), do: ~D[2020-11-30]
+    end
+
+    Application.put_env(:advent_of_code_helper, :date_module, NonDecemberDateModule)
+
     use_cassette("most_recent_year") do
-      with_mock Date, [utc_today: fn() -> ~D[2016-12-02] end] do
-        {:ok, _contents} = AdventOfCodeHelper.get_input(1)
-        assert File.exists?(".cache/input_#{calculate_year()}_1")
-      end
+      {:ok, _contents} = AdventOfCodeHelper.get_input(1)
+      assert File.exists?("#{context[:dir]}/input_2019_1")
     end
   end
 
-  test "gets current year correctly in december" do
+  test "gets current year correctly in december", context do
+    defmodule December2020DateModule do
+      def utc_today(), do: ~D[2020-12-10]
+    end
+
+    Application.put_env(:advent_of_code_helper, :date_module, December2020DateModule)
+
     use_cassette("2016_day_2") do
-      with_mock Date, [utc_today: fn() -> ~D[2016-12-02] end] do
-        {:ok, _contents} = AdventOfCodeHelper.get_input(2)
-        assert File.exists?(".cache/input_#{calculate_year()}_1")
-      end
-    end
-  end
-
-  defp calculate_year do
-    today = Date.utc_today
-    case today.month < 12 do
-      true -> today.year-1
-      false -> today.year
+      {:ok, _contents} = AdventOfCodeHelper.get_input(2)
+      assert File.exists?("#{context[:dir]}/input_2020_2")
     end
   end
 end
