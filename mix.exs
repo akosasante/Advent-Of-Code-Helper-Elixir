@@ -5,7 +5,7 @@ defmodule AdventOfCodeHelper.Mixfile do
     [
       app: :advent_of_code_helper,
       version: "0.1.2",
-      elixir: "~> 1.5",
+      elixir: "~> 1.10",
       start_permanent: Mix.env == :prod,
       deps: deps(),
       description: description(),
@@ -25,7 +25,11 @@ defmodule AdventOfCodeHelper.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
    [
-      {:exvcr, "~> 0.12", only: :test},{:finch, "~> 0.5"},{:dialyxir, "~> 1.0", only: [:dev], runtime: false},{:excoveralls, "~> 0.13", only: :test},{:ex_doc, ">=0.0.0", only: :dev},{:mock, "~> 0.2.0", only: :test}
+     {:exvcr, "~> 0.12", only: :test},
+     {:finch, "~> 0.5"},
+     {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+     {:excoveralls, "~> 0.13", only: :test},
+     {:ex_doc, ">=0.0.0", only: :dev},
    ]
   end
 
