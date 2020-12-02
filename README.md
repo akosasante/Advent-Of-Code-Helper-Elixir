@@ -12,6 +12,7 @@ AdventOfCodeHelper.get_input(year,day) # Specify year and day for puzzle
 AdventOfCodeHelper.get_input(day) # Automatically gets puzzle from most recent year
 
 ```
+
 Both of these functions will simply return a tuple `{:ok, value}` if they succeed, where `value` is the puzzle input in the form of a `BitString`, or `{:fail, message}` if there was something wrong.
 
 There are two configuration directives that are also needed to make this package work correctly. Simply add the following to your `config/config.exs`
