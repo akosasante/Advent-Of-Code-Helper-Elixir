@@ -49,7 +49,7 @@ defmodule AdventOfCodeHelper.Mixfile do
       files: ["lib","mix.exs","config/config.exs.sample","README*","LICENSE"],
       maintainers: ["Edward Hobbs"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/ejhobbs/Advent-Of-Code"}
+      links: %{"GitHub" => "https://github.com/akosasante/Advent-Of-Code-Helper-Elixir"}
     ]
   end
 
