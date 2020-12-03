@@ -4,7 +4,7 @@ dist: trusty
 elixir:
   - 1.10.4
 otp_release:
-  - '23'
+  - '23.0.4'
 
 script:
   - MIX_ENV=test mix do compile --warnings-as-errors, coveralls.json
