@@ -2,7 +2,9 @@ language: elixir
 sudo: false
 dist: trusty
 elixir:
-  - 1.10
+  - 1.10.4
+otp_release:
+  - '23'
 
 script:
   - MIX_ENV=test mix do compile --warnings-as-errors, coveralls.json
