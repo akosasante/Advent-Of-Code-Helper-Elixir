@@ -1,4 +1,5 @@
-# Advent of Code Helper [![Build Status](https://travis-ci.org/ejhobbs/Advent-Of-Code.svg?branch=master)](https://travis-ci.org/ejhobbs/Advent-Of-Code) [![codecov](https://codecov.io/gh/ejhobbs/Advent-Of-Code/branch/master/graph/badge.svg)](https://codecov.io/gh/ejhobbs/Advent-Of-Code) [![Hex.pm](https://img.shields.io/hexpm/v/advent_of_code_helper.svg?style=plastic)](https://hex.pm/packages/advent_of_code_helper)
+# Advent of Code Helper [![Build Status](https://travis-ci.org/akosasante/Advent-Of-Code-Helper-Elixir.svg?branch=master)](https://travis-ci.org/ejhobbs/Advent-Of-Code) [![codecov](https://codecov.io/gh/akosasante/Advent-Of-Code-Helper-Elixir/branch/master/graph/badge.svg?token=vssP39GcoL)](https://codecov.io/gh/akosasante/Advent-Of-Code-Helper-Elixir) [![Hex.pm](https://img.shields.io/hexpm/v/advent_of_code_helper.svg?style=plastic)](https://hex.pm/packages/advent_of_code_helper) [![hexdocs.pm](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/advent_of_code_helper/api-reference.html/)
+
 
 This elixir package allows you to quickly grab inputs for advent of code puzzles, and not have to worry about manually pasting them in! After you've got a puzzle input for the first time, the result is stored on disk so every subsequent request bypasses the need to download it from the server again.
 
@@ -33,7 +34,7 @@ This package can be installed by adding `advent_of_code_helper` to your list of 
 ```elixir
 def deps do
   [
-    {:advent_of_code_helper, "~> 0.1.0"}
+    {:advent_of_code_helper, "~> 0.2.0"}
   ]
 end
 ```

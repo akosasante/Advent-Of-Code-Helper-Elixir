@@ -12,6 +12,9 @@ defmodule AdventOfCodeHelper.Mixfile do
       package: package(),
       preferred_cli_env: [
         vcr: :test,
+        "vcr.delete": :test,
+        "vcr.show": :test,
+        "vcr.check": :test,
         coveralls: :test,
         "coveralls.html": :test,
         "coveralls.json": :test,
