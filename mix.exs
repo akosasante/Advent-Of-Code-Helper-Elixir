@@ -5,7 +5,7 @@ defmodule AdventOfCodeHelper.Mixfile do
     [
       app: :advent_of_code_helper,
       version: "0.2.0",
-      elixir: "~> 1.10",
+      elixir: "~> 1.13",
       start_permanent: Mix.env == :prod,
       deps: deps(),
       description: description(),
@@ -28,11 +28,12 @@ defmodule AdventOfCodeHelper.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
    [
-     {:exvcr, "~> 0.12", only: :test},
-     {:finch, "~> 0.5"},
+     {:exvcr, "~> 0.13", only: :test},
+     {:finch, "~> 0.9"},
      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-     {:excoveralls, "~> 0.13", only: :test},
-     {:ex_doc, ">=0.0.0", only: :dev, runtime: false},
+     {:excoveralls, "~> 0.14", only: :test},
+     {:ex_doc, "~> 0.24", only: :dev, runtime: false},
+     {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
    ]
   end
 
@@ -47,7 +48,7 @@ defmodule AdventOfCodeHelper.Mixfile do
     [
       name: :advent_of_code_helper,
       files: ["lib","mix.exs","config/config.exs.sample","README*","LICENSE"],
-      maintainers: ["Edward Hobbs"],
+      maintainers: ["Edward Hobbs", "Akosua Asante"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/akosasante/Advent-Of-Code-Helper-Elixir"}
     ]
