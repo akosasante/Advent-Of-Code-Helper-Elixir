@@ -5,8 +5,8 @@ defmodule AdventOfCodeHelper.Mixfile do
     [
       app: :advent_of_code_helper,
       version: "0.2.0",
-      elixir: "~> 1.13",
-      start_permanent: Mix.env == :prod,
+      elixir: "~> 1.12",
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
       package: package(),
@@ -19,7 +19,9 @@ defmodule AdventOfCodeHelper.Mixfile do
         "coveralls.html": :test,
         "coveralls.json": :test
       ],
-      test_coverage: [tool: ExCoveralls]
+      test_coverage: [tool: ExCoveralls],
+      # Docs
+      name: "Advent of Code Elixir Helper"
     ]
   end
 
