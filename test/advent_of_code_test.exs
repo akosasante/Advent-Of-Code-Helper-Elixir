@@ -1,27 +1,29 @@
 defmodule AdventOfCodeHelperTest do
   use ExUnit.Case, async: false
-  use ExVCR.Mock, adapter: ExVCR.Adapter.Httpc
+  use ExVCR.Mock, adapter: ExVCR.Adapter.Finch
 
   setup _context do
     cache_dir = Application.get_env(:advent_of_code_helper, :cache_dir)
-    File.mkdir cache_dir
-    File.write(Path.join(cache_dir,"input_test_day"),"test contents",[])
+    File.mkdir(cache_dir)
+    # Just testing that writing to the cache directory works
+    File.write(Path.join(cache_dir, "input_test_day"), "test contents", [])
 
-    on_exit fn ->
-      File.rm_rf cache_dir
-    end
-    {:ok, [dir: cache_dir, contents: "test contents"]}
+    on_exit(fn ->
+      File.rm_rf(cache_dir)
+    end)
+
+    {:ok, [dir: cache_dir]}
   end
 
-  setup_all do
+  setup do
     ExVCR.Config.cassette_library_dir("test/fixture/vcr_cassettes")
+    ExVCR.Config.filter_request_headers("cookie")
     :ok
   end
 
-
   test "do we get the correct value" do
     use_cassette("everything_should_work") do
-      {:ok, contents} = AdventOfCodeHelper.get_input(2015,1)
+      {:ok, contents} = AdventOfCodeHelper.get_input(2015, 1)
       assert String.length(contents) == 7000
     end
   end

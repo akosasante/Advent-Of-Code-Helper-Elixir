@@ -3,7 +3,7 @@
     "request": {
       "body": "",
       "headers": {
-        "cookie": "session=53616c7465645f5fbe8195bfafa6287294398d68ab94caa9d3f13bfd04e49ba9792952240c7e5cd4a351f20e369890c1"
+        "cookie": "***"
       },
       "method": "get",
       "options": [],
@@ -11,15 +11,16 @@
       "url": "https://adventofcode.com/2012/day/5/input"
     },
     "response": {
+      "binary": false,
       "body": "404 Not Found\n",
       "headers": {
-        "Date": "Thu, 10 Aug 2017 21:19:22 GMT",
-        "Content-Type": "text/plain",
-        "Transfer-Encoding": "chunked",
-        "Connection": "keep-alive",
-        "Server": "Apache",
-        "Server-Ip": "172.31.56.123",
-        "Vary": "X-Forwarded-Proto"
+        "date": "Wed, 01 Dec 2021 15:28:05 GMT",
+        "content-type": "text/plain",
+        "transfer-encoding": "chunked",
+        "connection": "keep-alive",
+        "server": "Apache",
+        "server-ip": "172.31.56.123",
+        "strict-transport-security": "max-age=300"
       },
       "status_code": 404,
       "type": "ok"
