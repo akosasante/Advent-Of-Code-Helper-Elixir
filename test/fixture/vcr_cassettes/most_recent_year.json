@@ -3,7 +3,7 @@
     "request": {
       "body": "",
       "headers": {
-        "cookie": "session=53616c7465645f5fbe8195bfafa6287294398d68ab94caa9d3f13bfd04e49ba9792952240c7e5cd4a351f20e369890c1"
+        "cookie": "***"
       },
       "method": "get",
       "options": [],
@@ -11,15 +11,17 @@
       "url": "https://adventofcode.com/2019/day/1/input"
     },
     "response": {
-      "body": "L5, R1, R3, L4, R3, R1, L3, L2, R3, L5, L1, L2, R5, L1, R5, R1, L4, R1, R3, L4, L1, R2, R5, R3, R1, R1, L1, R1, L1, L2, L1, R2, L5, L188, L4, R1, R4, L3, R47, R1, L1, R77, R5, L2, R1, L2, R4, L5, L1, R3, R187, L4, L3, L3, R2, L3, L5, L4, L4, R1, R5, L4, L3, L3, L3, L2, L5, R1, L2, R5, L3, L4, R4, L5, R3, R4, L2, L1, L4, R1, L3, R1, R3, L2, R1, R4, R5, L3, R5, R3, L3, R4, L2, L5, L1, L1, R3, R1, L4, R3, R3, L2, R5, R4, R1, R3, L4, R3, R3, L2, L4, L5, R1, L4, L5, R4, L2, L1, L3, L3, L5, R3, L4, L3, R5, R4, R2, L4, R2, R3, L3, R4, L1, L3, R2, R1, R5, L4, L5, L5, R4, L5, L2, L4, R4, R4, R1, L3, L2, L4, R3\n",
+      "binary": false,
+      "body": "58444\n100562\n133484\n67910\n58372\n104607\n108786\n137410\n62910\n76115\n64142\n59324\n54327\n92864\n94120\n63931\n128696\n111758\n65698\n54930\n116136\n127111\n133914\n52992\n90364\n107637\n62118\n147901\n62347\n53614\n140690\n115587\n66148\n95729\n148847\n84269\n71569\n85026\n130871\n102470\n53328\n63308\n104085\n57744\n123008\n120983\n94968\n69402\n83830\n137069\n121062\n71267\n103035\n97604\n129153\n65595\n148655\n124573\n139257\n59722\n101050\n139557\n74362\n50024\n101750\n83209\n117840\n139442\n127810\n113438\n94731\n125471\n96653\n88522\n125573\n74456\n89839\n84458\n128451\n68608\n92504\n103549\n117980\n126850\n144675\n59752\n60986\n125867\n89982\n108717\n134815\n89209\n143434\n61123\n103162\n139529\n122228\n137866\n78676\n80779\n",
       "headers": {
-        "Date": "Thu, 10 Aug 2017 21:19:23 GMT",
-        "Content-Type": "text/plain",
-        "Content-Length": "609",
-        "Connection": "keep-alive",
-        "Server": "Apache",
-        "Server-Ip": "172.31.59.243",
-        "Vary": "X-Forwarded-Proto,Accept-Encoding"
+        "date": "Wed, 01 Dec 2021 15:21:38 GMT",
+        "content-type": "text/plain",
+        "content-length": "649",
+        "connection": "keep-alive",
+        "server": "Apache",
+        "server-ip": "172.31.59.243",
+        "vary": "Accept-Encoding",
+        "strict-transport-security": "max-age=300"
       },
       "status_code": 200,
       "type": "ok"

@@ -1,5 +1,6 @@
 defmodule AdventOfCodeHelper.GetInputs do
   alias AdventOfCodeHelper.FileCache
+
   @moduledoc """
   Contains all the logic for actually grabbing data from the website
   """
@@ -11,18 +12,22 @@ defmodule AdventOfCodeHelper.GetInputs do
     - Day: Int for day of puzzle
     - Session: Session variable for authenticating against AoC
   """
+  @spec get_value(integer(), integer(), String.t()) :: {:ok, String.t()}
   def get_value(year, day, session) do
-    case FileCache.in_cache?(year,day) do
-      true -> FileCache.get_file(year,day)
-      false -> save_and_return(year,day,session)
+    case FileCache.in_cache?(year, day) do
+      true -> FileCache.get_file(year, day)
+      false -> save_and_return(year, day, session)
     end
   end
 
-  defp save_and_return(year,day,session) do
-    case generate_url(year,day) |> get_from_url(session) do
-      {:ok, contents} -> FileCache.save_file(year,day,contents)
-                         {:ok, contents}
-      {:fail, message} -> {:fail, message}
+  defp save_and_return(year, day, session) do
+    case generate_url(year, day) |> get_from_url(session) do
+      {:ok, contents} ->
+        FileCache.save_file(year, day, contents)
+        {:ok, contents}
+
+      {:fail, message} ->
+        {:fail, message}
     end
   end
 
@@ -32,14 +37,14 @@ defmodule AdventOfCodeHelper.GetInputs do
     Finch.build(:get, url, generate_headers(session))
     |> Finch.request(MyFinch)
     |> case do
-         {:ok, %Finch.Response{body: body, status: 200}} -> {:ok, body}
-         {:ok, %Finch.Response{body: body}} -> {:fail, body}
-         {:error, %{reason: error}} -> {:fail, error}
-         error -> {:fail, "Unexpected error: #{inspect error}"}
+      {:ok, %Finch.Response{body: body, status: 200}} -> {:ok, body}
+      {:ok, %Finch.Response{body: body}} -> {:fail, body}
+      {:error, %{reason: error}} -> {:fail, error}
+      error -> {:fail, "Unexpected error: #{inspect(error)}"}
     end
   end
 
-  defp generate_url(year,day) do
+  defp generate_url(year, day) do
     "https://adventofcode.com/#{year}/day/#{day}/input"
   end
 
