@@ -17,9 +17,9 @@ defmodule AdventOfCodeHelper.Mixfile do
         "vcr.check": :test,
         coveralls: :test,
         "coveralls.html": :test,
-        "coveralls.json": :test,
+        "coveralls.json": :test
       ],
-      test_coverage: [tool: ExCoveralls],
+      test_coverage: [tool: ExCoveralls]
     ]
   end
 
@@ -27,14 +27,14 @@ defmodule AdventOfCodeHelper.Mixfile do
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-   [
-     {:exvcr, "~> 0.13", only: :test},
-     {:finch, "~> 0.9"},
-     {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-     {:excoveralls, "~> 0.14", only: :test},
-     {:ex_doc, "~> 0.24", only: :dev, runtime: false},
-     {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
-   ]
+    [
+      {:exvcr, "~> 0.13.2", only: :test},
+      {:finch, "~> 0.8.0"},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:excoveralls, "~> 0.14", only: :test},
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false},
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+    ]
   end
 
   defp description do
@@ -47,11 +47,10 @@ defmodule AdventOfCodeHelper.Mixfile do
   defp package do
     [
       name: :advent_of_code_helper,
-      files: ["lib","mix.exs","config/config.exs.sample","README*","LICENSE"],
+      files: ["lib", "mix.exs", "config/config.exs.sample", "README*", "LICENSE"],
       maintainers: ["Edward Hobbs", "Akosua Asante"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/akosasante/Advent-Of-Code-Helper-Elixir"}
     ]
   end
-
 end
