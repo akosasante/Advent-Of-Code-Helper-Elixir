@@ -34,7 +34,7 @@ This package can be installed by adding `advent_of_code_helper` to your list of 
 ```elixir
 def deps do
   [
-    {:advent_of_code_helper, "~> 0.2.0"}
+    {:advent_of_code_helper, "~> 0.2.1"}
   ]
 end
 ```
