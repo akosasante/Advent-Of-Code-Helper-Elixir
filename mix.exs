@@ -22,7 +22,11 @@ defmodule AdventOfCodeHelper.Mixfile do
       ],
       test_coverage: [tool: ExCoveralls],
       # Docs
-      name: "Advent of Code Elixir Helper"
+      name: "Advent of Code Elixir Helper",
+      docs: [
+        filter_modules: ~r/AdventOfCodeHelper$/,
+        extras: ["README.md"]
+      ]
     ]
   end
 
