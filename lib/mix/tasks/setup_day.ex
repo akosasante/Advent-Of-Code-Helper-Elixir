@@ -1,6 +1,6 @@
 defmodule Mix.Tasks.Advent.SetupDay do
   @moduledoc """
-  Mix task run with the command: ""
+  Mix task run with the command: `mix advent.setup_day <year> <day>` or `mix advent.setup_day <day>`
   It will create a folder and template/starter file for a given day's Advent puzzle.
   """
 

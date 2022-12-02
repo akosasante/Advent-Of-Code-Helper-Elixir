@@ -1,6 +1,6 @@
 defmodule Mix.Tasks.Advent.RunDay do
   @moduledoc """
-  Mix task run with the command: ""
+  Mix task run with the command: `mix advent.run_day day=<day> year=<year> bench=<boolean> split=<splitOption> sep=<sep>`
   It will run the `part1/1` and `part2/1` functions in the module associated with a given day's Advent puzzle.
   """
 
