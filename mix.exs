@@ -5,7 +5,7 @@ defmodule AdventOfCodeHelper.Mixfile do
     [
       app: :advent_of_code_helper,
       version: "0.3.0",
-      elixir: "~> 1.14",
+      elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
