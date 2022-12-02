@@ -1,6 +1,6 @@
 defmodule Mix.Tasks.Advent.RunDay do
   @moduledoc """
-  Mix task run with the command: `mix advent.run_day day=<day> year=<year> bench=<boolean> split=<splitOption> sep=<sep>`
+  Mix task run with the command: `mix advent.run_day day=<day> year=<year> bench=<boolean> split=<splitOption> sep=<sep> trim=<boolean>`
   It will run the `part1/1` and `part2/1` functions in the module associated with a given day's Advent puzzle.
   """
 
@@ -15,19 +15,18 @@ defmodule Mix.Tasks.Advent.RunDay do
     day = get_day(args)
     bench = get_benchmark_flag(args)
     sep = get_separator(args)
+    split = get_split_opt(args)
+    trim = get_trim(args)
 
-    run_day(year, day, bench, sep)
+    run_day(year, day, bench, sep, split, trim)
   end
 
-  defp run_day(year, day, bench, sep) do
+  defp run_day(year, day, bench, sep, split, trim) do
     module_name = Module.concat("Advent#{year}", "Day#{day}")
 
     input =
       AdventOfCodeHelper.get_input(year, day)
-      |> case do
-        {:ok, input} -> AdventOfCodeHelper.split_to_list(input, sep)
-        e -> raise RuntimeError, inspect(e)
-      end
+      |> conditionally_split(split, sep, trim)
 
     if bench do
       System.put_env("PRINT_LOGS", "false")
@@ -89,5 +88,38 @@ defmodule Mix.Tasks.Advent.RunDay do
       "sep=" <> sep -> sep
       _ -> "\n"
     end
+  end
+
+  defp get_split_opt(args) do
+    case Enum.find(args, &String.starts_with?(&1, "split=")) do
+      "split=" <> split when split in ["false"] -> String.to_atom(split)
+      "split=list" -> "list"
+      "split=stream" -> "stream"
+      _ -> "list"
+    end
+  end
+
+  defp get_trim(args) do
+    case Enum.find(args, &String.starts_with?(&1, "trim=")) do
+      "trim=" <> trim when trim in ["true", "false"] -> String.to_atom(trim)
+      _ -> false
+    end
+  end
+
+  defp conditionally_split({:ok, input}, false, _sep, _trim) do
+    input
+  end
+
+  defp conditionally_split({:ok, input}, "list", sep, trim) do
+    AdventOfCodeHelper.split_to_list(input, sep, trim)
+  end
+
+  defp conditionally_split({:ok, input}, "stream", sep, trim) do
+    AdventOfCodeHelper.split_to_stream(input, sep, trim)
+  end
+
+  defp conditionally_split(input_failed_responce, _split_opt, _sep, _trim) do
+    IO.puts("Failed to fetch and parse puzzle input: #{inspect(input_failed_responce)}")
+    nil
   end
 end

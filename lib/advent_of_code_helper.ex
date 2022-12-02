@@ -31,17 +31,17 @@ defmodule AdventOfCodeHelper do
   @doc """
   Splits the string input into a list, using a given separator.
   """
-  @spec split_to_list(String.t(), String.t()) :: list(any())
-  def split_to_list(input, sep \\ "\n") do
-    String.split(input, sep, trim: true)
+  @spec split_to_list(String.t(), String.t(), boolean()) :: list(any())
+  def split_to_list(input, sep \\ "\n", trim \\ false) do
+    String.split(input, sep, trim: trim)
   end
 
   @doc """
   Splits the string input into a stream, using a given separator.
   """
-  @spec split_to_stream(String.t(), String.t()) :: Enumerable.t()
-  def split_to_stream(input, sep \\ "\n") do
-    Stream.flat_map(input, &String.split(&1, sep, trim: true))
+  @spec split_to_stream(String.t(), String.t(), boolean()) :: Enumerable.t()
+  def split_to_stream(input, sep \\ "\n", trim \\ false) do
+    Stream.flat_map(input, &String.split(&1, sep, trim: trim))
   end
 
   def calculate_year() do

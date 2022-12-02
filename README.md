@@ -18,13 +18,13 @@ where year is a four-digit integer (eg: 2022) and day is a number between 1 and 
 
 To run the code you've added to the generated template file, use the run command:
 
-`mix advent.run_day day=<day> year=<year> bench=<boolean> split=<splitOption> sep=<sep>`
+`mix advent.run_day day=<day> year=<year> bench=<boolean> split=<splitOption> sep=<sep> trim=<boolean>`
 
 Only `day` is a required argument. `Year` will be inferred as current year if it's not given, otherwise it should be a 4-digit number. 
 If bench is `true`, the task will run the day's puzzles through [benchee](https://github.com/bencheeorg/benchee) and return the benchmark results.
 
 By default, (if no `split` or `sep` options are passed in), the puzzle input will be read as a string, split on newlines, and the resulting list will be passed into the puzzle module to be run.
-You can change this behaviour by passing in either `list`, `stream`, or `false` for split. This will split the string into a List, a Stream, or leave the input as-is, respectively. The separator to use as the split boundary can be changed by passing in a `sep` argument.
+You can change this behaviour by passing in either `list`, `stream`, or `false` for split. This will split the string into a List, a Stream, or leave the input as-is, respectively. The separator to use as the split boundary can be changed by passing in a `sep` argument; trimming extra newlines/whitespace can be enabled by setting `trim` to `true`.
 
 
 ### Directly calling AdventOfCodeHelper
@@ -64,7 +64,7 @@ This package can be installed by adding `advent_of_code_helper` to your list of 
 ```elixir
 def deps do
   [
-    {:advent_of_code_helper, "~> 0.3.0"}
+    {:advent_of_code_helper, "~> 0.3.1"}
   ]
 end
 ```
