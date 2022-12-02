@@ -4,11 +4,12 @@ defmodule AdventOfCodeHelper.Mixfile do
   def project do
     [
       app: :advent_of_code_helper,
-      version: "0.2.1",
-      elixir: "~> 1.12",
+      version: "0.3.0",
+      elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
+      dialyzer: [plt_add_apps: [:mix]],
       package: package(),
       preferred_cli_env: [
         vcr: :test,
@@ -30,12 +31,13 @@ defmodule AdventOfCodeHelper.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:exvcr, "~> 0.13.2", only: :test},
+      {:benchee, "~> 1.1.0"},
       {:finch, "~> 0.8.0"},
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:excoveralls, "~> 0.14", only: :test},
       {:ex_doc, "~> 0.24", only: :dev, runtime: false},
-      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+      {:exvcr, "~> 0.13.2", only: :test}
     ]
   end
 

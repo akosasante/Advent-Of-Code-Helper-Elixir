@@ -10,9 +10,9 @@ defmodule AdventOfCodeHelper.GetInputs do
   ## Parameters
     - Year: Int for year of puzzle
     - Day: Int for day of puzzle
-    - Session: Session variable for authenticating against AoC
+    - Session: Session string for authenticating against AoC
   """
-  @spec get_value(integer(), integer(), String.t()) :: {:ok, String.t()}
+  @spec get_value(integer(), integer(), String.t()) :: {:ok, String.t()} | {:fail, any()}
   def get_value(year, day, session) do
     case FileCache.in_cache?(year, day) do
       true -> FileCache.get_file(year, day)
